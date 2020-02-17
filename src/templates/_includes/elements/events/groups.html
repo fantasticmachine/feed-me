@@ -1,0 +1,13 @@
+{% import '_includes/forms' as forms %}
+
+{% set eventTypes = craft.events.getEventTypes() %}
+
+{{ forms.selectField({
+    label: "Commerce Event Type" | t('feed-me'),
+    instructions: 'Choose the Event type you want to to save your feed data into.' | t('feed-me'),
+    id: 'elementGroup-' ~ elementType,
+    name: 'elementGroup[' ~ elementType ~ ']',
+    options: craft.feedme.getSelectOptions(eventTypes),
+    value: feed.elementGroup[elementType] ?? '',
+    required: true,
+}) }}
